@@ -31,6 +31,7 @@ export default function BaseRoutes() {
 
          <Routes>
             <Route path="/" element={<Login />} />
+     
             <Route element={<ProtectedRoute />}>
                <Route path="/products" element={<Products />} />
                <Route path="/users" element={<UserComponent />}>
@@ -38,6 +39,7 @@ export default function BaseRoutes() {
                   <Route path="post" element={<Post />} />
                   <Route path="comments" element={<Comments />} />
                </Route>
+               <Route path="*" element={<div>page not found</div>} />
             </Route>
          </Routes>
 
