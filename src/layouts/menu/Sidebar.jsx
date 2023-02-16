@@ -18,8 +18,8 @@ function Sidebar() {
 
   function renderMenuItem(item, index) {
     let hasChildren = item.children && item.children.length > 0;
-    debugger
     let isActive = activeMenu === index;
+    debugger;
 
     return (
       <li key={index} className={`menu-item ${isActive ? "active" : ""}`}>

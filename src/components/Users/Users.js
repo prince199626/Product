@@ -4,7 +4,7 @@ import { EndpointService } from '../../services/endpointService';
 import HTTPService from '../../services/HTTPService';
 
 function Users() {
-  const [filteredList, setFilteredList] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(10);
   const [perPage, setPerPage] = useState(10);
@@ -51,7 +51,7 @@ function Users() {
   const getAllUsers = () => {
     let apiUrl = EndpointService.getUser+'?limit='+perPage+'&skip='+skip;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.users)
+      setUserList(response.users)
       setTotalRows(response.total)
       console.log(response)
     });
@@ -60,7 +60,7 @@ function Users() {
   const getAllUsersSearch = (query) => {
     let apiUrl = EndpointService.getUserSearch+'?q='+query;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.users)
+      setUserList(response.users)
       console.log(response)
     });
   }
@@ -68,7 +68,7 @@ function Users() {
 
   return (
     <>
-      <div className='layout-body'>
+      <div >
         <div className='filter'>
           <div className="search-box">
             <input
@@ -83,7 +83,7 @@ function Users() {
         </div>
         <DataTable
           columns={columns}
-          data={filteredList}
+          data={userList}
           progressPending={loading}
           pagination
           paginationServer

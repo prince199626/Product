@@ -11,7 +11,7 @@ export const menuItems = [
     children: [
       {
         label: "All Users",
-        path: "",
+        path: "user",
       },
       {
         label: "All Post",
@@ -23,14 +23,5 @@ export const menuItems = [
       },
     ],
   },
-  {
-    label: "Posts",
-    path: "/post",
-    icon: "fas fa-info-circle",
-  },
-  {
-    label: "Comments",
-    path: "/comments",
-    icon: "fas fa-envelope",
-  },
+
 ];

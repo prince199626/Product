@@ -4,7 +4,7 @@ import { EndpointService } from '../../services/endpointService';
 import HTTPService from '../../services/HTTPService';
 
 function Comments() {
-  const [filteredList, setFilteredList] = useState([]);
+  const [commentList, setCommentsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(10);
   const [perPage, setPerPage] = useState(10);
@@ -46,7 +46,7 @@ function Comments() {
   const getAllComments = () => {
     let apiUrl = EndpointService.getComments+'?limit='+perPage+'&skip='+skip;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.comments)
+      setCommentsList(response.comments)
       setTotalRows(response.total)
       console.log(response)
     });
@@ -55,7 +55,7 @@ function Comments() {
   const getAllCommentsSearch = (query) => {
     let apiUrl = EndpointService.getCommentsSearch+'?q='+query;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.comments)
+      setCommentsList(response.comments)
       console.log(response)
     });
   }
@@ -63,7 +63,7 @@ function Comments() {
 
   return (
     <>
-      <div className='layout-body'>
+      <div >
         <div className='filter'>
           <div className="search-box">
             <input
@@ -78,7 +78,7 @@ function Comments() {
         </div>
         <DataTable
           columns={columns}
-          data={filteredList}
+          data={commentList}
           progressPending={loading}
           pagination
           paginationServer

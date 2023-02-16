@@ -4,7 +4,7 @@ import { EndpointService } from '../../services/endpointService';
 import HTTPService from '../../services/HTTPService';
 
 function Post() {
-  const [filteredList, setFilteredList] = useState([]);
+  const [postList, setPostList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(10);
   const [perPage, setPerPage] = useState(10);
@@ -51,7 +51,7 @@ function Post() {
   const getAllPosts = () => {
     let apiUrl = EndpointService.getPost+'?limit='+perPage+'&skip='+skip;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.posts)
+      setPostList(response.posts)
       setTotalRows(response.total)
       console.log(response)
     });
@@ -60,7 +60,7 @@ function Post() {
   const getAllPostsSearch = (query) => {
     let apiUrl = EndpointService.getPostSearch+'?q='+query;
     HTTPService.get(apiUrl, null).then((response) => {
-      setFilteredList(response.posts)
+      setPostList(response.posts)
       console.log(response)
     });
   }
@@ -68,7 +68,7 @@ function Post() {
 
   return (
     <>
-      <div className='layout-body'>
+      <div >
         <div className='filter'>
           <div className="search-box">
             <input
@@ -83,7 +83,7 @@ function Post() {
         </div>
         <DataTable
           columns={columns}
-          data={filteredList}
+          data={postList}
           progressPending={loading}
           pagination
           paginationServer
