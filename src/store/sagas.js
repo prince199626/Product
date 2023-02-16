@@ -14,7 +14,7 @@ function* authenticateUser(action) {
     yield put(loginSuccess(response.token));
     const token = yield select(getToken);
   } catch (error) {
-    if(error.response.data.message)
+    if(error.response.data.message == "Invalid credentials")
     {
     toast.error(error.response.data.message)
     }
