@@ -20,6 +20,7 @@ function Login() {
     const token = useSelector(getToken);
     useEffect(() => {
         if (token != null) {
+            cypherService.encryptSessionStorage.setItem("appToken", token);
             navigate('/products');
         }
     }, [token]);
